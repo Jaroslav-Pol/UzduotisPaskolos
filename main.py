@@ -2,10 +2,10 @@ from modules.loan import Loan
 
 class main:
     while True:
-        print('Pasirinkite veiksmą: '
-              '1. Įvesti paskolos duomenys. '
-              '2. Parodyti paskolos informaciją. '
-              '3. Parodyti paskolos mokėjimo grafiką. '
+        print('Pasirinkite veiksmą: \n'
+              '1. Įvesti duomenys. '
+              '2. Parodyti informaciją. '
+              '3. Parodyti mokėjimo grafiką. '
               '4. Baigti darbą.  ')
         action = input()
 
@@ -19,10 +19,17 @@ class main:
 
 
         elif action == '2':
-            loan.loan_info()
+
+            try:
+                loan.loan_info()
+            except:
+                print('Pirmą įveskite duomenys!')
 
         elif action == '3':
-            loan.payment_schedule()
+            try:
+                loan.payment_schedule()
+            except:
+                print('Pirmą įveskite duomenys!')
 
         elif action == '4':
             break
@@ -31,5 +38,4 @@ class main:
             print('Blogai pasirinktas veiksmas, pasirinkite iš naujo!')
             continue
 
-# nauja_paskola = Loan(2000, 12, 10)
-# print(nauja_paskola.loan_info())
+

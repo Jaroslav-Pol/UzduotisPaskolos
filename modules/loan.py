@@ -8,11 +8,11 @@ class Loan:
     def loan_info(self):
         'Atvaizduoja paskolos informaciją'
 
-        print(f'Paskolos suma: {self.loan_sum}\n'
-              f'Paskolos terminas: {self.term}\n'
+        print(f'Paskolos suma: {self.loan_sum} €.\n'
+              f'Paskolos terminas: {self.term}mėn.\n'
               f'Metinė palūkanų norma: {self.interest}%\n'
-              f'Palūkanų suma: {self.loan_calc()[0]}\n'
-              f'Bendra gražintina suma: {self.loan_calc()[1]}')
+              f'Palūkanų suma: {self.loan_calc()[0]} €\n'
+              f'Bendra gražintina suma: {self.loan_calc()[1]} €')
 
     def loan_calc(self):
         'Gražina dvi reiksmes: palūkanų suma ir bendrą gražintiną sumą.'
