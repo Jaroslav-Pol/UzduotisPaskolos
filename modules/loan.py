@@ -22,17 +22,28 @@ class Loan:
         return total_interest, refund_sum
 
     def payment_schedule(self):
-        'Parodo mokėjimo grafiką'
+        'Suskaičiuoja ir parodo mokėjimo grafiką'
         loan_left = self.loan_sum
-        loan_part = round(self.loan_sum / self.term, 2)
+        loan_part = self.loan_sum / self.term
 
-        print("{:>6}\t{:>6}\t{:>6}\t{:>6}\t{:>6}\t".format(
-            'Mėnuo', 'Gražintina paskolos dalis', 'Paskolos likutis',
-            'Priskaičiuotos palūkanos', 'Bendra mokėtina suma'))
+        print("{:>10}\t{:>10}\t{:>10}\t{:>10}\t{:>10}\t".format(
+            'Mėnuo', 'Mėnesinė', 'Paskolos',
+            'Mėnesio', 'Bendra'))
+        print("{:>10}\t{:>10}\t{:>10}\t{:>10}\t{:>10}\t".format(
+            '', 'paskolos', 'likutis',
+            'palūkanos', 'mokėtina'))
+        print("{:>10}\t{:>10}\t{:>10}\t{:>10}\t{:>10}\t".format(
+            '', 'dalis', '',
+            '', 'suma'))
 
         for month in range(self.term):
-            monthly_interest = round(loan_left * self.interest / (12 * 100), 2)
+            monthly_interest = loan_left * self.interest / (12 * 100)
             loan_left -= loan_part
             monthly_sum = loan_part + monthly_interest
-            print("{:>6}\t{:>6}\t{:>6}\t{:>6}\t{:>6}\t".format(
-                month + 1, loan_part, loan_left, monthly_interest, monthly_sum))
+            print("{:>10}\t{:>10}\t{:>10}\t{:>10}\t{:>10}\t".format(
+                month + 1, round(loan_part, 2), round(loan_left, 2),
+                round(monthly_interest, 2), round(monthly_sum, 2)))
+
+        print("{:>10}\t{:>10}\t{:>10}\t{:>10}\t{:>10}\t\n".format(
+            'Iš viso', self.loan_sum, '',
+            self.loan_calc()[0], self.loan_calc()[1]))
