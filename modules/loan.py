@@ -23,5 +23,16 @@ class Loan:
 
     def payment_schedule(self):
         'Parodo mokėjimo grafiką'
-        pass
+        loan_left = self.loan_sum
+        loan_part = round(self.loan_sum / self.term, 2)
 
+        print("{:>6}\t{:>6}\t{:>6}\t{:>6}\t{:>6}\t".format(
+            'Mėnuo', 'Gražintina paskolos dalis', 'Paskolos likutis',
+            'Priskaičiuotos palūkanos', 'Bendra mokėtina suma'))
+
+        for month in range(self.term):
+            monthly_interest = round(loan_left * self.interest / (12 * 100), 2)
+            loan_left -= loan_part
+            monthly_sum = loan_part + monthly_interest
+            print("{:>6}\t{:>6}\t{:>6}\t{:>6}\t{:>6}\t".format(
+                month + 1, loan_part, loan_left, monthly_interest, monthly_sum))
